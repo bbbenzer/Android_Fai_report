@@ -1,20 +1,30 @@
 package com.pose.breakreport.android_fai_report;
 
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
+import com.pose.breakreport.android_fai_report.xFunction.RegisterUserClass;
+import com.pose.breakreport.android_fai_report.xFunction.iFunction;
 import com.sleepbot.datetimepicker.time.RadialPickerLayout;
 import com.sleepbot.datetimepicker.time.TimePickerDialog;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class Summary_break_activity extends AppCompatActivity {
@@ -61,5 +71,60 @@ public class Summary_break_activity extends AppCompatActivity {
             }
         });
 
+
+
+    }
+
+    public void getCustomerList(String DueDate) {
+        class getCustomerList extends AsyncTask<String, Void, String> {
+
+            iFunction iFt = new iFunction();
+            String REGISTER_URL = iFt.getCustomer();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                try {
+                    JSONObject jsonObj = new JSONObject(s);
+                    JSONArray setRs = jsonObj.getJSONArray(iFt.getTAG_RESULTS());
+
+                    for(int i=0;i<setRs.length();i++) {
+                        JSONObject c = setRs.getJSONObject(i);
+                        pOrder xOrder = new pOrder();
+                        Log.d("BBBB", c+"" );
+                        xOrder.setBarcode(c.getString("Item_Code"));
+                        xOrder.setProductname(c.getString("NameTH"));
+                        xOrder.setNumber(c.getString("Qty"));
+                        xOrder.setPrice(c.getString("Price"));
+                        xOrder.setTotal(c.getString("Total"));
+                        pOr.add(xOrder);
+                    }
+
+                    ListView lv = (ListView) findViewById(R.id.list_order);
+                    lv.setAdapter(new OrderAdapter(manageorder.this, pOr));
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            //class connect php RegisterUserClass important !!!!!!!
+            @Override
+            protected String doInBackground(String... params) {
+                RegisterUserClass ruc = new RegisterUserClass();
+                HashMap<String, String> data = new HashMap<String,String>();
+                data.put("DueDate",params[0]);
+                String result = ruc.sendPostRequest(REGISTER_URL,data);
+                return result;
+            }
+        }
+        getCustomerList ru = new getCustomerList();
+        ru.execute(DueDate);
     }
 }
