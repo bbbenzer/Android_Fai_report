@@ -1,11 +1,13 @@
 package com.pose.breakreport.android_fai_report;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.pose.breakreport.android_fai_report.Adapter.CustomerAdapter;
 import com.pose.breakreport.android_fai_report.Properties.pCustomer;
 import com.pose.breakreport.android_fai_report.xFunction.RegisterUserClass;
+import com.pose.breakreport.android_fai_report.xFunction.Session;
 import com.pose.breakreport.android_fai_report.xFunction.iFunction;
 
 import org.json.JSONArray;
@@ -30,6 +33,7 @@ import java.util.Locale;
 
 public class Summary_break_activity extends AppCompatActivity {
 
+    private Session session;
     private DatePickerDialog mDatePicker;
     private Calendar mCalendar;
     private Button btnDate;
@@ -54,6 +58,8 @@ public class Summary_break_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary_break_activity);
+
+        session = new Session(getApplicationContext());
 
         btnDate = (Button) findViewById(R.id.button_date);
         txtDate = (TextView) findViewById(R.id.text_date);
@@ -105,11 +111,24 @@ public class Summary_break_activity extends AppCompatActivity {
                         Log.d("BBBB", c+"" );
                         xCus.setCus_Code(c.getString("Cus_Code"));
                         xCus.setFullname(c.getString("Fullname"));
+                        if(i==0){
+                            session.setDueDate(c.getString("DueDate"));
+                        }
                         pCus.add(xCus);
                     }
 
                     ListView lv = (ListView) findViewById(R.id.list_customer);
                     lv.setAdapter(new CustomerAdapter(Summary_break_activity.this, pCus));
+                    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            String Cus_Code = pCus.get(position).getCus_Code();
+                            session.setCusCode(Cus_Code);
+                            Intent intent = new Intent(Summary_break_activity.this, Break_detail_activity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
 
 
                 } catch (JSONException e) {

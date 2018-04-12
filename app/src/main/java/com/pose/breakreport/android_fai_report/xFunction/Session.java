@@ -17,14 +17,24 @@ public class Session {
         prefs = PreferenceManager.getDefaultSharedPreferences(cntx);
     }
 
-    public void setusername(String username) {
-        prefs.edit().putString("username", username).commit();
+    public void setCusCode(String CusCode) {
+        prefs.edit().putString("CusCode", CusCode).commit();
     }
 
-    public String getusername() {
-        String username = prefs.getString("username","");
-        return username;
+    public String getCusCode() {
+        String CusCode = prefs.getString("CusCode","");
+        return CusCode;
     }
+
+    public void setDueDate(String DueDate) {
+        prefs.edit().putString("DueDate", DueDate).commit();
+    }
+
+    public String getDueDate() {
+        String DueDate = prefs.getString("DueDate","");
+        return DueDate;
+    }
+
 
 
 
