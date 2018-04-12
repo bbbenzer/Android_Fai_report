@@ -50,10 +50,10 @@ public class CustomerAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) aActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View v = inflater.inflate(R.layout.list_menu, parent, false);
+        final View v = inflater.inflate(R.layout.list_customer, parent, false);
         final pCustomer pList = listData.get(position);
 
-        TextView txtCode = (TextView)v.findViewById(R.id.customer_text);
+        TextView txtCode = (TextView)v.findViewById(R.id.customer_txt);
         txtCode.setText(pList.getCus_Code()+" : "+pList.getFullname());
 
         return v;

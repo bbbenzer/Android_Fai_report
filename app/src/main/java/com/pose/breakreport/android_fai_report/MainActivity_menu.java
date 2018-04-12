@@ -15,12 +15,14 @@ import java.util.ArrayList;
 
 public class MainActivity_menu extends AppCompatActivity {
 
+    ArrayList<pMenu> PArray = new ArrayList<pMenu>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        final ArrayList<pMenu> PArray = new ArrayList<pMenu>();
+
         ArrayList menu = new ArrayList();
         menu.add("ใบสรุปขนมเบรค");
         menu.add("ใบสั่งผลิต");

@@ -12,16 +12,17 @@ import android.widget.TextView;
 
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
+import com.pose.breakreport.android_fai_report.Adapter.CustomerAdapter;
+import com.pose.breakreport.android_fai_report.Properties.pCustomer;
 import com.pose.breakreport.android_fai_report.xFunction.RegisterUserClass;
 import com.pose.breakreport.android_fai_report.xFunction.iFunction;
-import com.sleepbot.datetimepicker.time.RadialPickerLayout;
-import com.sleepbot.datetimepicker.time.TimePickerDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,6 +34,7 @@ public class Summary_break_activity extends AppCompatActivity {
     private Calendar mCalendar;
     private Button btnDate;
     private TextView txtDate;
+    private ArrayList<pCustomer> pCus = new ArrayList<pCustomer>();
 
     private DatePickerDialog.OnDateSetListener onDateSetListener =
             new DatePickerDialog.OnDateSetListener() {
@@ -45,6 +47,7 @@ public class Summary_break_activity extends AppCompatActivity {
                     String textDate = dateFormat.format(date);
 
                     txtDate.setText(textDate);
+                    getCustomerList(txtDate.getText().toString());
                 }
             };
     @Override
@@ -72,6 +75,9 @@ public class Summary_break_activity extends AppCompatActivity {
         });
 
 
+        getCustomerList(txtDate.getText().toString());
+
+
 
     }
 
@@ -95,18 +101,15 @@ public class Summary_break_activity extends AppCompatActivity {
 
                     for(int i=0;i<setRs.length();i++) {
                         JSONObject c = setRs.getJSONObject(i);
-                        pOrder xOrder = new pOrder();
+                        pCustomer xCus = new pCustomer();
                         Log.d("BBBB", c+"" );
-                        xOrder.setBarcode(c.getString("Item_Code"));
-                        xOrder.setProductname(c.getString("NameTH"));
-                        xOrder.setNumber(c.getString("Qty"));
-                        xOrder.setPrice(c.getString("Price"));
-                        xOrder.setTotal(c.getString("Total"));
-                        pOr.add(xOrder);
+                        xCus.setCus_Code(c.getString("Cus_Code"));
+                        xCus.setFullname(c.getString("Fullname"));
+                        pCus.add(xCus);
                     }
 
-                    ListView lv = (ListView) findViewById(R.id.list_order);
-                    lv.setAdapter(new OrderAdapter(manageorder.this, pOr));
+                    ListView lv = (ListView) findViewById(R.id.list_customer);
+                    lv.setAdapter(new CustomerAdapter(Summary_break_activity.this, pCus));
 
 
                 } catch (JSONException e) {
