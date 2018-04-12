@@ -34,6 +34,7 @@ public class iFunction {
     }
 
     public String getCustomer() { return xUrl + "/getcustomer.php"; }
+    public String getBreakDetail() { return xUrl + "/getbreak_detail.php"; }
 //    public String getList() { return xUrl + "/getsearch.php"; }
 //    public String getProduct() { return xUrl + "/getproduct.php"; }
 //    public String getOrder() { return xUrl + "/getorder.php"; }
