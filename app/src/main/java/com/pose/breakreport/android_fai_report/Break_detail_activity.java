@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -33,12 +34,27 @@ public class Break_detail_activity extends AppCompatActivity {
     private TextView Customertxt;
     private TextView CusNametxt;
     ArrayList<pBreakDetail> pBD = new ArrayList<pBreakDetail>();
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent back = new Intent(this,Summary_break_activity.class);
+        startActivity(back);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Break_detail_activity.super.onBackPressed();
+        Intent back = new Intent(this,Summary_break_activity.class);
+        startActivity(back);
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_break_detail_activity);
 
         session = new Session(getApplicationContext());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         DueDatetxt = (TextView)findViewById(R.id.duedate_txt);
         Customertxt = (TextView)findViewById(R.id.customer_txt);

@@ -1,25 +1,47 @@
 package com.pose.breakreport.android_fai_report;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.pose.breakreport.android_fai_report.Adapter.RoomAdapter;
 import com.pose.breakreport.android_fai_report.Properties.pRoom;
+import com.pose.breakreport.android_fai_report.xFunction.Session;
 
 import java.util.ArrayList;
 
 public class Order_bill_activity extends AppCompatActivity {
 
+    private Session session;
     ArrayList<pRoom> PArray = new ArrayList<pRoom>();
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent back = new Intent(this,MainActivity_menu.class);
+        startActivity(back);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Order_bill_activity.super.onBackPressed();
+        Intent back = new Intent(this,MainActivity_menu.class);
+        startActivity(back);
+        finish();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_bill_activity);
+
+        session = new Session(getApplicationContext());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ArrayList menu = new ArrayList();
         menu.add("พาย-ครัวซอง");

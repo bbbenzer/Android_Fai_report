@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -38,7 +39,21 @@ public class Summary_break_activity extends AppCompatActivity {
     private Calendar mCalendar;
     private Button btnDate;
     private TextView txtDate;
-    private ArrayList<pCustomer> pCus = new ArrayList<pCustomer>();
+    ArrayList<pCustomer> pCus = new ArrayList<pCustomer>();
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent back = new Intent(this,MainActivity_menu.class);
+        startActivity(back);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Summary_break_activity.super.onBackPressed();
+        Intent back = new Intent(this,MainActivity_menu.class);
+        startActivity(back);
+        finish();
+    }
 
     private DatePickerDialog.OnDateSetListener onDateSetListener =
             new DatePickerDialog.OnDateSetListener() {
@@ -51,6 +66,8 @@ public class Summary_break_activity extends AppCompatActivity {
                     String textDate = dateFormat.format(date);
 
                     txtDate.setText(textDate);
+                    session.setDateSelect(textDate);
+                    pCus.clear();
                     getCustomerList(txtDate.getText().toString());
                 }
             };
@@ -60,6 +77,7 @@ public class Summary_break_activity extends AppCompatActivity {
         setContentView(R.layout.activity_summary_break_activity);
 
         session = new Session(getApplicationContext());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btnDate = (Button) findViewById(R.id.button_date);
         txtDate = (TextView) findViewById(R.id.text_date);
@@ -80,7 +98,7 @@ public class Summary_break_activity extends AppCompatActivity {
             }
         });
 
-
+        txtDate.setText(session.getDateSelect());
         getCustomerList(txtDate.getText().toString());
 
 

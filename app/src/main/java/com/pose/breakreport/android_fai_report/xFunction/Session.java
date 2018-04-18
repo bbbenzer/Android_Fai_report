@@ -35,6 +35,14 @@ public class Session {
         return DueDate;
     }
 
+    public void setDateSelect(String DateSelect) {
+        prefs.edit().putString("DateSelect", DateSelect).commit();
+    }
+
+    public String getDateSelect() {
+        String DateSelect = prefs.getString("DateSelect","");
+        return DateSelect;
+    }
 
 
 
