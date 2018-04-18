@@ -45,9 +45,9 @@ public class MainActivity_menu extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }else if(choice.equals("ใบสั่งผลิต")){
-//                    Intent intent = new Intent(MainActivity_menu.this, Activity_summary_break.class);
-//                    startActivity(intent);
-//                    finish();
+                    Intent intent = new Intent(MainActivity_menu.this, Order_bill_activity.class);
+                    startActivity(intent);
+                    finish();
                 }else{
                     Log.d("Error", "Error enter list");
                 }
