@@ -50,7 +50,7 @@ public class BreakdetailAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) aActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View v = inflater.inflate(R.layout.list_customer, parent, false);
+        final View v = inflater.inflate(R.layout.list_break_detail, parent, false);
         final pBreakDetail pList = listData.get(position);
 
         TextView detail = (TextView)v.findViewById(R.id.detail_txt);
