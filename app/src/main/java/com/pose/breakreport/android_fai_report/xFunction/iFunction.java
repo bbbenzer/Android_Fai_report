@@ -35,22 +35,13 @@ public class iFunction {
 
     public String getCustomer() { return xUrl + "/getcustomer.php"; }
     public String getBreakDetail() { return xUrl + "/getbreak_detail.php"; }
-//    public String getList() { return xUrl + "/getsearch.php"; }
-//    public String getProduct() { return xUrl + "/getproduct.php"; }
-//    public String getOrder() { return xUrl + "/getorder.php"; }
-//    public String insertItem() { return xUrl + "/insertitem.php"; }
-//    public String insertDocNo() { return xUrl + "/insertdocno.php"; }
-//    public String ondelete() { return  xUrl + "/ondelete.php"; }
-//    public String onclear() { return  xUrl + "/onclear.php"; }
-//    public String onSubmit() { return xUrl + "/onsubmit.php"; }
-//    public String onUpdate() { return xUrl + "/onupdate.php"; }
-//    public String onUpdateedit() { return xUrl + "/edit_onupdate.php"; }
-//    public String getDoc() { return xUrl + "/getdoc.php"; }
-//    public String getEdit() { return xUrl + "/getedit.php"; }
-//    public String onCancel() { return xUrl + "/oncancel.php"; }
-//    public String insertedit() { return xUrl + "/edit_insertitem.php"; }
-//    public String getRecorder() { return xUrl + "/getrecorder.php"; }
-//    public String oncheckblank() { return xUrl + "/oncheckblank.php"; }
+    public String getNormallist() { return  xUrl + "/getnormal_list.php"; }
+    public String getAddonlist() { return  xUrl + "/getaddon_list.php"; }
+    public String getPielist() { return  xUrl + "/getpie_list.php"; }
+    public String getPielistsub() { return  xUrl + "/getpie_list_sub.php"; }
+    public String getSoftcakelist() { return  xUrl + "/getsoftcake_list.php"; }
+    public String getSoftcakelistsub() { return  xUrl + "/getsoftcake_list_sub.php"; }
+    public String getKitchenlist() { return  xUrl + "/getkitchen_list.php"; }
 
     public String getTodayLong() {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");

@@ -10,11 +10,13 @@ import android.widget.ListView;
 
 import com.pose.breakreport.android_fai_report.Adapter.MenuAdapter;
 import com.pose.breakreport.android_fai_report.Properties.pMenu;
+import com.pose.breakreport.android_fai_report.xFunction.Session;
 
 import java.util.ArrayList;
 
 public class MainActivity_menu extends AppCompatActivity {
 
+    private Session session;
     ArrayList<pMenu> PArray = new ArrayList<pMenu>();
 
     @Override
@@ -22,6 +24,10 @@ public class MainActivity_menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        session = new Session(getApplicationContext());
+        session.setDateSelect("");
+        session.setDueDate("");
+        session.setCusCode("");
 
         ArrayList menu = new ArrayList();
         menu.add("ใบสรุปขนมเบรค");
