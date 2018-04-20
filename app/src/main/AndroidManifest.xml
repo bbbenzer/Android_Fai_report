@@ -31,7 +31,7 @@
         <activity android:name=".Addon_type_activity" />
         <activity android:name=".Pie_type_activity" />
         <activity android:name=".Softcake_type_activity" />
-        <activity android:name=".Kitchen_type_activity"></activity>
+        <activity android:name=".Kitchen_type_activity" />
     </application>
 
 </manifest>
