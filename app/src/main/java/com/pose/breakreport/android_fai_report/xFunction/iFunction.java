@@ -20,7 +20,7 @@ public class iFunction {
 //    private String xIp = "http://172.20.43.251";
 //    private String xIp = "http://192.168.0.179:8181";
 //    private String xIp = "http://192.168.1.34";
-//    private String xIp = "http://192.168.0.101";
+//    private String xIp = "http://192.168.0.100";
      private String xIp = "http://fai01.dyndns.biz:8181";
 
     private String xPath = "/Android_fai_report";

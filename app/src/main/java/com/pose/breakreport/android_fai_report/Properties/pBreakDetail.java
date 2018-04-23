@@ -7,6 +7,7 @@ package com.pose.breakreport.android_fai_report.Properties;
 public class pBreakDetail {
     private String detail;
     private String qty;
+    private String cusname;
 
     public String getDetail() {
         return detail;
@@ -22,5 +23,13 @@ public class pBreakDetail {
 
     public void setQty(String qty) {
         this.qty = qty;
+    }
+
+    public String getCusname() {
+        return cusname;
+    }
+
+    public void setCusname(String cusname) {
+        this.cusname = cusname;
     }
 }

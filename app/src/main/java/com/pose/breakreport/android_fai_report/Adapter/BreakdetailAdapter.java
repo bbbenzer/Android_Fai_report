@@ -53,6 +53,13 @@ public class BreakdetailAdapter extends ArrayAdapter {
         final View v = inflater.inflate(R.layout.list_break_detail, parent, false);
         final pBreakDetail pList = listData.get(position);
 
+        TextView cusname = (TextView)v.findViewById(R.id.cusname_txt);
+        if(pList.getCusname().equals("BLANK_TRUE")){
+            cusname.setVisibility(View.GONE);
+        }else {
+            cusname.setText(pList.getCusname());
+        }
+
         TextView detail = (TextView)v.findViewById(R.id.detail_txt);
         detail.setText(pList.getDetail());
 
